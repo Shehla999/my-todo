@@ -32,7 +32,7 @@ const Todolist = () => {
   return (
     <div className="max-w-md mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">TODO List</h1>
-      <div onSubmit={handleSubmit} className="flex mb-4 gap-2">
+      <form onSubmit={handleSubmit} className="flex mb-4 gap-2">
         <input
           type="text"
           value={text}
@@ -45,9 +45,8 @@ const Todolist = () => {
           className="bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
         >
           {editId ? "update" : "Add"}
-          Add
         </button>
-      </div>
+      </form>
 
       <ul className="space-y-2">
         {todos.map((todo) => (
@@ -56,9 +55,18 @@ const Todolist = () => {
             className="flex justify-between items-center p-2 border-b"
           >
             <span>{todo.text}</span>
-            <div>
-              <button className="px-2 py-1 text-blue-500 border border-blue-500 rounded hover:bg-blue-500 hover:text-white">
+            <div className="space-x-2">
+              <button
+                onClick={() => handleEdit(todo)}
+                className="px-2 py-1 text-blue-500 border border-blue-500 rounded hover:bg-blue-500 hover:text-white"
+              >
                 EDIT
+              </button>
+              <button
+                onClick={() => handleDelete(todo.id)}
+                className="px-2 py-1 text-blue-500 border border-blue-500 rounded hover:bg-blue-500 hover:text-white"
+              >
+                DELETE
               </button>
             </div>
           </li>
